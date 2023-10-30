@@ -12,7 +12,8 @@ echo "Attempt to create cacheIT! folder complete."
 # We go in it
 cd /Users/etudiant/.cacheIT!/
 # Download the script file.
-curl -O https://raw.githubusercontent.com/c22dev/cacheIT/main/cacheIT!.sh
+curl -O https://raw.githubusercontent.com/c22dev/cacheIT/main/cacheIT.sh
+chmod +x cacheIT.sh
 echo "cacheIT! script downloaded."
 
 # Download the LaunchAgent file.

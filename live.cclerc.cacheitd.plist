@@ -5,7 +5,7 @@
    <key>Label</key>
    <string>com.user.loginscript</string>
    <key>ProgramArguments</key>
-   <array><string>/Users/etudiant/.cacheIT!/cacheIT!.sh</string></array>
+   <array><string>/Users/etudiant/.cacheIT!/cacheIT.sh</string></array>
    <key>RunAtLoad</key>
    <true/>
 </dict>
