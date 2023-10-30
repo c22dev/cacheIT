@@ -6,7 +6,7 @@ It simply copy over all your apps contained in the Printers folder into a cached
 It watches for modifications in your Printers folder every 30 seconds. If something is added, put it in the cache. If something is deleted, put it back in Printers.
 
 ## Power and performance consumption
-Really really low. The first time it runs it could take some time depending on your app size but it shouldn't slow down your computer at all.
+Really really low. The first time it runs it could take some time depending on your apps size but it shouldn't slow down your computer at all.
 
 ## Fake apps
 If you see those zero kb apps that is an error. simply ignore it or delete it from cache and from printers folder.
