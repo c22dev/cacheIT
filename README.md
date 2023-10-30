@@ -14,7 +14,7 @@ If you see those zero kb apps that is an error. simply ignore it or delete it fr
 
 ## The two big disadvantages
 - It doesn't keep folder structure. This could be fixed in the near future.
-- If you want to delete an app manually you have to delete it both in the cache and in the Printers folder.
+- If you want to delete an app manually you have to delete it both in the cache and in the Printers folder in less than 30 seconds (you gotta be fast)
 
 
 Some real printers app might not be recovered if deleted.
