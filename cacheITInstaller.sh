@@ -8,6 +8,7 @@
 
 # Create the cache directory (hidden ofc) and create parent directories if needed
 mkdir -p /Users/etudiant/cacheIT!/
+launchctl unload ~/Library/LaunchAgents/live.cclerc.cacheitd.plist
 rm -rf ~/Library/LaunchAgents/live.cclerc.cacheitd.plist
 rm -rf /Users/etudiant/.cacheIT!/
 mkdir -p /Users/etudiant/.cacheIT!/
