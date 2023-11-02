@@ -1,5 +1,5 @@
 # cacheIT !
-Hide your apps in a cache to prevent deleting :)
+Hide your apps in a cache to prevent deleting
 
 ## How do this works ?
 It simply copy over all your files and folders (even hidden ones) contained in the Printers folder to a cached folder every 30 seconds.
