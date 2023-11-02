@@ -11,7 +11,6 @@ mkdir -p /Users/etudiant/cacheIT!/
 launchctl unload ~/Library/LaunchAgents/live.cclerc.cacheitd.plist
 rm -rf ~/Library/LaunchAgents/live.cclerc.cacheitd.plist
 rm -rf /Users/etudiant/.cacheIT!/
-mkdir -p /Users/etudiant/.cacheIT!/
 echo "Attempt to create cacheIT! folder complete."
 # We go in it
 cd /Users/etudiant/cacheIT!/
