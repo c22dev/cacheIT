@@ -6,7 +6,7 @@
 # This script makes a cache copy of any modification in the Printers directory
 # Feel free to edit the monitored folder, as well as the cache folder (you can hide it more)
 
-# 0.2 brings a rewrite as well as an app update selection system. Please update your sh script now by deleting current .cacheIT! hidden directory in your home folder.
+# 0.2 brings a rewrite as well as an app update selection system. Please update your sh script now by deleting current cacheIT! hidden directory in your home folder.
 # What's new ?
 # Check for EVERY FILES AND FOLDERS, not only .app. This make file structure a lot more accurate and files are correctly copied.
 # Update system - allow user to update apps (if app in cache is older than app in monitored)
@@ -15,7 +15,7 @@
 MONITORED_FOLDER="/Users/etudiant/Library/Printers/"
 
 # Path to the cache folder
-CACHE_FOLDER="/Users/etudiant/.cacheIT!/"
+CACHE_FOLDER="/Users/etudiant/cacheIT!/"
 
 # Infinite loop to continuously monitor the folder
 while true; do
