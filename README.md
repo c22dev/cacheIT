@@ -14,7 +14,7 @@ If you see those zero kb apps that is an error. simply ignore it or delete it fr
 <img width="625" alt="image" src="https://github.com/c22dev/cacheIT/assets/102235607/3682533d-319a-4e11-885e-9d7f097d2d90">
 
 ## The big disadvantage
-- If you want to delete an app manually you have to delete it both in the cache and in the Printers folder in less than a second (you gotta be fast)
+- If you want to delete an app manually you have to delete it both in the cache and in the Printers folder in less than a second (you gotta be really fast)
 
 
 Some real printers app might not be recovered if deleted.
