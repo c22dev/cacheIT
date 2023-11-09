@@ -1,63 +1,70 @@
 #!/bin/bash
-
-# cacheIT! - v0.2
+# cacheIT! - v0.3
 # Constantin CLERC
 
 # This script makes a cache copy of any modification in the Printers directory
 # Feel free to edit the monitored folder, as well as the cache folder (you can hide it more)
 
-# 0.2 brings a rewrite as well as an app update selection system. Please update your sh script now by deleting current cacheIT! hidden directory in your home folder.
-# What's new ?
-# Check for EVERY FILES AND FOLDERS, not only .app. This make file structure a lot more accurate and files are correctly copied.
-# Update system - allow user to update apps (if app in cache is older than app in monitored)
-
+# 0.3 just tars everything. More stable, no leftover.
 # Path to the monitored folder
-MONITORED_FOLDER="/Users/etudiant/Library/Printers/"
 
-# Path to the cache folder
-CACHE_FOLDER="/Users/etudiant/cacheIT!/"
 
-# Infinite loop to continuously monitor the folder
-while true; do
-    # Get a list of all files and folders in the monitored folder, including hidden ones
-    current_items=$(find "$MONITORED_FOLDER" -mindepth 1)
+# Monitor folder path and cache folder path
+folder_path="/Users/etudiant/Library/Printers/"
+cache_path="/Users/etudiant/cacheIT/"
 
-    # Check for added or modified items
-    for item in $current_items; do
-        # Extract the relative path from the monitored folder
-        relative_path=$(realpath --relative-to="$MONITORED_FOLDER" "$item")
+# Create the cache folder if it doesn't exist
+mkdir -p "$cache_path"
 
-        # Check if the item is not in the cache folder
-        if [ ! -e "$CACHE_FOLDER/$relative_path" ]; then
-            # Copy the item to the cache folder
-            cp -R "$item" "$CACHE_FOLDER/$relative_path"
-        elif [ -d "$item" ]; then
-            # Check if the item in the cache folder is older than the monitored item
-            if [ "$item" -nt "$CACHE_FOLDER/$relative_path" ]; then
-                # Update the directory in the cache folder
-                cp -R "$item" "$CACHE_FOLDER/$relative_path"
-            fi
-        else
-            # Check if the item in the cache folder is older than the monitored item
-            if [ "$item" -nt "$CACHE_FOLDER/$relative_path" ]; then
-                # Update the file in the cache folder
-                cp -R "$item" "$CACHE_FOLDER/$relative_path"
-            fi
+# Initial state of the monitored folder
+previous_state=$(find "$folder_path" -type f | sort)
+
+# Function to create a new tar archive
+create_tar() {
+    # Create a timestamp for the tar filename
+    timestamp="$(date +%Y%m%d%H%M%S)"
+
+    # Create the tar archive with current timestamp
+    tar -czf "$cache_path/archive_$timestamp.tar.gz" -C "$folder_path" .
+
+    echo "Created new archive: archive_$timestamp.tar.gz"
+}
+
+# Function to restore deleted files
+restore_files() {
+    # Get the latest archive file
+    latest_archive=$(ls -t "$cache_path" | grep -E "^archive_[0-9]{14}\.tar\.gz$" | head -1)
+
+    # Extract the latest archive back to the folder path
+    tar -xzf "$cache_path/$latest_archive" -C "$folder_path"
+
+    echo "Restored files from $latest_archive"
+}
+
+# Initial creation of tar archive
+create_tar
+
+# Monitor the folder for changes
+while :; do
+    # Get the current state of the monitored folder
+    current_state=$(find "$folder_path" -type f | sort)
+
+    # Compare previous and current states
+    if [[ "$previous_state" != "$current_state" ]]; then
+        # Files added or modified
+        create_tar
+        previous_state="$current_state"
+    else
+        # Check if files were deleted
+        diff_output=$(diff <(echo "$previous_state") <(echo "$current_state"))
+
+        if [[ -n "$diff_output" ]]; then
+            # Files deleted
+            restore_files
+            previous_state="$current_state"
         fi
-    done
+    fi
 
-    # Check for deleted items
-    for cached_item in "$CACHE_FOLDER"/*; do
-        # Extract the relative path from the cache folder
-        relative_path=$(realpath --relative-to="$CACHE_FOLDER" "$cached_item")
-
-        # Check if the cached item is not in the monitored folder
-        if [ ! -e "$MONITORED_FOLDER/$relative_path" ]; then
-            # Restore the item from the cache folder
-            cp -R "$cached_item" "$MONITORED_FOLDER/$relative_path"
-        fi
-    done
-
-    # Sleep for 30 seconds before the next check
-    sleep 30
+    # Sleep for 1 second before checking again
+    sleep 1
 done
