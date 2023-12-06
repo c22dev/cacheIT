@@ -1,6 +1,5 @@
 #!/bin/bash
 # cacheIT! - v0.3
-# Constantin CLERC
 
 # This script makes a cache copy of any modification in the Printers directory
 # Feel free to edit the monitored folder, as well as the cache folder (you can hide it more)
