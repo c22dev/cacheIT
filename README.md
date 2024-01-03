@@ -2,8 +2,7 @@
 Hide your apps in a cache to prevent deleting
 
 ## How do this works ?
-It simply copy over all your files and folders (even hidden ones) contained in the Printers folder to a cached folder every second.
-It watches for modifications in your Printers folder every second. If something is added, it puts it in the cache. If something is deleted, put it back in Printers from the cache.
+It simply copy over all your files and folders (even hidden ones) contained in the Printers folder to a cached folder every second. If something is added, it puts it in the cache. If something is deleted, put it back in Printers from the cache.
 If an app is updated in Printers, update app in cache.
 
 ## Power and performance consumption
